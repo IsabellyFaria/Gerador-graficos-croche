@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.header-caixa{
+    margin-top: 0;
+    background-color: #12514e;
+    padding: 20px;
+    display: flex;
+    
+}
+.logo-principal img{
+    width: 100px;   /* largura fixa */
+    height: auto;
+}
+.header-bico {
+    margin: -8px;
+    height: 80px; /* altura visível do babado */
+    background-image: url("imagem/bico.png");
+    background-repeat: repeat-x;
+    background-size: auto 80px; /* redimensiona a imagem para caber na altura */
+}
+
+h1{
+    font-family: "Gravitas One", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+#titulo-principal{
+    color:aliceblue;
+}
+.container{
+    display: flex;
+    justify-content: center;
+}
+.conteudo-esquerda{
+    margin-top: 7rem;
+    margin-right: 15px;
+    
+}
+.conteudo-direita{
+    margin-top: 7rem;
+    margin-left: 15px;
+}
+.form-textarea{
+    width: 600px;
+    height: 400px;
+}
+.form-botoes{
+    display: flex;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Gráficos</title>
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bevan:ital@0;1&family=Gravitas+One&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-caixa">
+            <div class="logo-principal"><img src="imagem/logo.png" alt=""></div>
+            <h1 id="titulo-principal">GERADOR DE GRÁFICOS</h1>
+        </div>
+        <div class="header-bico"></div>
+        
+    </header>
+    <div class="container">
+        <div class="conteudo-esquerda">
+            <h2>Digite Sua Receita</h2>
+            <form action="" method="post">
+                <textarea class="form-textarea" placeholder="Digite aqui">
+                4pb
+                2pb,2pb,2pb,2pb</textarea>
+                <div class="form-botoes">
+                    <button type="submit">Gerar Resultado</button>
+                    <button>Apagar Conteudo</button>
+                </div>
+            </form>
+        </div>
+        <div class="conteudo-direita">
+            <h2>Veja o Resultado:</h2>
+            <canvas id="crocheCanvas" width="600" height="400" style="border:1px solid black;"></canvas>
+        </div>
+    </div>
+    
+</body>
+</html>
