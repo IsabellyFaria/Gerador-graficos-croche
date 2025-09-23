@@ -3,6 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+body{
+  background-color:#f5eacc;
+}
 .header-caixa{
     margin-top: 0;
     background-color: #12514e;
@@ -11,6 +14,7 @@
     
 }
 .logo-principal img{
+    padding-left: 2rem;
     width: 100px;   /* largura fixa */
     height: auto;
 }
@@ -23,30 +27,74 @@
 }
 
 h1{
-    font-family: "Gravitas One", serif;
+    font-family: "Abril Fatface", serif;
     font-weight: 400;
     font-style: normal;
 }
 #titulo-principal{
-    color:aliceblue;
+    color:#fdfaf3;
+    align-self: center;
+    padding-left: 3rem;
 }
 .container{
     display: flex;
     justify-content: center;
 }
 .conteudo-esquerda{
-    margin-top: 7rem;
+    margin-top: 5rem;
     margin-right: 15px;
+    border: 5px solid #12514e;
+    border-radius: 20px;
+    padding: 2%;
     
 }
+h2{
+  padding: 3px;
+  margin-bottom: 2%;
+  font-family: "Abril Fatface", serif;
+  font-weight: 400;
+  font-style: normal;
+}
 .conteudo-direita{
-    margin-top: 7rem;
+    margin-top: 5rem;
     margin-left: 15px;
+    border: 5px solid #12514e;
+    border-radius: 20px;
+    padding: 2%;
 }
 .form-textarea{
     width: 600px;
     height: 400px;
+    background-color: #fdfaf3;
+    font-family: "Special Elite", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    border: 3px solid #12514e;
+    border-radius: 15px;
+    padding: 5px;
+}
+#crocheCanvas{
+  background-color: #fdfaf3;
+  border: 5px solid #12514e;
+  border-radius: 15px;
+  padding: 5px;
 }
 .form-botoes{
     display: flex;
+    justify-content: center;
+}
+.form-btn{
+    font-family: "Special Elite", system-ui;
+    font-weight: 400;
+    font-style: normal;
+    color:#fdfaf3;
+    background-color: #12514e;
+    border-radius: 15px;
+    padding: 10px 20px;
+    margin: 0rem 2rem ;
+    font-size: 18px;
+    align-self: center;
+    display: flex;         /* transforma o botão em flex container */
+    justify-content: center; /* centraliza horizontal */
+    align-items: center;
 }
