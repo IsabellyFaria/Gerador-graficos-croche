@@ -22,21 +22,21 @@
     <div class="container">
         <div class="conteudo-esquerda">
             <h2>Digite Sua Receita:</h2>
-            <form action="" method="post">
-                <textarea class="form-textarea" placeholder="Digite aqui">
+            <form id="form-receita" method="post">
+                <textarea name="receita" class="form-textarea" placeholder="Digite aqui">
                 4pb
                 2pb,2pb,2pb,2pb</textarea>
                 <div class="form-botoes">
-                    <button class='form-btn'type="submit">Gerar Resultado</button>
-                    <button class='form-btn'>Apagar Conteudo</button>
+                    <button id="form-btn-submit" class='form-btn'type="submit" title="Clique aqui para gerar o resultado">Gerar Resultado</button>
+                    <button id="form-btn-clear" class='form-btn' title="Clique aqui para apagar o conteudo gerado">Apagar Conteudo</button>
                 </div>
             </form>
         </div>
         <div class="conteudo-direita">
             <h2>Veja o Resultado:</h2>
-            <canvas id="crocheCanvas" width="600" height="400" style="border:1px solid black;"></canvas>
+            <canvas id="crocheCanvas" width="600" height="400"></canvas>
         </div>
     </div>
-    
 </body>
 </html>
+<script src="desenhador.js"></script>

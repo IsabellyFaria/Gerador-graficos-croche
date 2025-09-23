@@ -75,9 +75,9 @@ h2{
 }
 #crocheCanvas{
   background-color: #fdfaf3;
-  border: 5px solid #12514e;
+  border: 3px solid #12514e;
   border-radius: 15px;
-  padding: 5px;
+  display: block; /* evita margens automáticas */
 }
 .form-botoes{
     display: flex;
@@ -97,4 +97,8 @@ h2{
     display: flex;         /* transforma o botão em flex container */
     justify-content: center; /* centraliza horizontal */
     align-items: center;
+    cursor: pointer;
+}
+.form-btn:hover{
+    background-color: #4e5c51;
 }
