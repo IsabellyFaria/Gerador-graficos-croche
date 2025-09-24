@@ -8,6 +8,21 @@ class No{
 }
 class Arvore{
     constructor(){
-
+        this.raiz=null
+    }
+    criaNo(valor){
+        var novoNo = new No(valor);
+        if (this.raiz==null){
+            this.raiz = novoNo
+        }
+        return novoNo
+    }
+    adicionaNo(valor,pai=null){
+        var novoNo = criaNo(valor)
+        if(pai){
+            if(!pai.primogenito){
+                pai.primogenito
+            }
+        }
     }
 }
