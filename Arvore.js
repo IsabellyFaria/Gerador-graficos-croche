@@ -3,26 +3,44 @@ class No{
         this.valor=valor;
         this.primogenito = null;
         this.proxIrmao = null;
-        this.pai=null
+        this.pai=null;
     }
 }
 class Arvore{
     constructor(){
-        this.raiz=null
+        this.raiz=null;
     }
     criaNo(valor){
         var novoNo = new No(valor);
         if (this.raiz==null){
-            this.raiz = novoNo
+            this.raiz = novoNo;
         }
-        return novoNo
+        return novoNo;
     }
     adicionaNo(valor,pai=null){
-        var novoNo = criaNo(valor)
+        var novoNo = criaNo(valor);
+        var primogenito = pai.primogenito;
         if(pai){
-            if(!pai.primogenito){
-                pai.primogenito
+            if(primogenito == null){
+                pai.primogenito = novoNo;
+            }else if(primogenito.proxIrmao == null){
+                primogenito.proxIrmao = novoNo;
+            }else{
+                var ultimoIrmao = primogenito.proxIrmao;
+                while(ultimoIrmao.proxIrmao != null){
+                    ultimoIrmao = ultimoIrmao.proxIrmao;
+                }
+                ultimoIrmao.proxIrmao= novoNo;
             }
         }
+    }
+    getRaiz(){
+        return this.raiz;
+    }
+    getPrimogenito(no){
+        return no.primogenito
+    }
+    getProxIrmao(no){
+        return no.proxIrmao
     }
 }
