@@ -1,5 +1,12 @@
 const formulario = document.getElementById('form-receita');
-
+let canvas = document.getElementById("crocheCanvas");
+let ctx = canvas.getContext("2d"); // contexto 2D
+function circuloMagico(){
+  ctx.beginPath();
+  ctx.arc(150, 300, 4, 0, 2 * Math.PI); // x, y, raio, ângulo inicial, final
+  ctx.stroke(); // borda
+}
+circuloMagico()
 function organizaFila(receita){
   var instrucoes_receita=[]
   var linhas_receita = receita.split(";").map(item => item.trim()).filter(item => item !== "");
