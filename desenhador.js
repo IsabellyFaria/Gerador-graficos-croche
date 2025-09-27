@@ -1,12 +1,12 @@
 const formulario = document.getElementById('form-receita');
 let canvas = document.getElementById("crocheCanvas");
 let ctx = canvas.getContext("2d"); // contexto 2D
-function circuloMagico(){
+function circuloMagico(raio){
   ctx.beginPath();
-  ctx.arc(200, 300, 4, 0, 2 * Math.PI); // x, y, raio, ângulo inicial, final
+  ctx.arc(200, 300, raio, 0, 2 * Math.PI); // x, y, raio, ângulo inicial, final
   ctx.stroke(); // borda
 }
-circuloMagico()
+circuloMagico(40)
 function organizaFila(receita){
   var instrucoes_receita=[]
   var linhas_receita = receita.split(";").map(item => item.trim()).filter(item => item !== "");
@@ -36,8 +36,28 @@ pontoBaixo()
 function organizaArvore(receita){
   
 }
+function encontraRaio(pontos,maiorPonto){
+  var circunferenciaMinima = len(pontos)*maiorPonto
+  var raio = Math.roof(circunferenciaMinima/(2*Math.PI))
+  return raio
+}
+function pontosCircunferencia(cx, cy, r, n) {
+    let pontos = [];
+    for (let k = 0; k < n; k++) {
+        let theta = (2 * Math.PI / n) * k;
+        let x = cx + r * Math.cos(theta);
+        let y = cy + r * Math.sin(theta);
+        pontos.push({x, y});
+    }
+    return pontos;
+}
 function adicionaPontoCircunferencia(Cx,Cy,raio,pontos){
-  //
+  //Divide a circunferencia em n pontos de mesma distancia
+  var posicaoPontos = pontosCircunferencia(Cx,Cy,raio,len(pontos))
+  posicaoPontos.forEach(cirPonto => {
+
+  });
+
 }
 formulario.addEventListener('submit', (event) => {
   event.preventDefault(); // impede o envio tradicional
