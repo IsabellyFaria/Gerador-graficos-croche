@@ -1,70 +1,89 @@
 const formulario = document.getElementById('form-receita');
 let canvas = document.getElementById("crocheCanvas");
 let ctx = canvas.getContext("2d"); // contexto 2D
-function circuloMagico(raio){
+function circuloMagico(raio) {
   ctx.beginPath();
   ctx.arc(200, 300, raio, 0, 2 * Math.PI); // x, y, raio, ângulo inicial, final
   ctx.stroke(); // borda
 }
-circuloMagico(40)
-function organizaFila(receita){
-  var instrucoes_receita=[]
-  var linhas_receita = receita.split(";").map(item => item.trim()).filter(item => item !== "");
-  linhas_receita.forEach(linha => {
-      grupo_pontos_receita = linha.split(",").map(item => item.trim()).filter(item => item !== "")
-      instrucoes_receita.push(grupo_pontos_receita)
-    });
-    return instrucoes_receita
-}
-function pontoBaixo(){
-  ctx.beginPath();
-  //FAZ TRAÇO HORIZINTAL
-  ctx.moveTo(500, 300);       // Inicia um ponto
-  ctx.lineTo(515, 300);       // Desenha uma linha
-  ctx.closePath();          // Fecha o caminho (opcional)
-  ctx.stroke();             // Desenha o contorno
-  ctx.fill();               // Preenche a forma
-  //FAZ TRAÇO VERTICAL
-  ctx.beginPath();
-  ctx.moveTo(508, 307);       // Inicia um ponto
-  ctx.lineTo(508, 293);       // Desenha uma linha
-  ctx.closePath();          // Fecha o caminho (opcional)
-  ctx.stroke();             // Desenha o contorno
-  ctx.fill();               // Preenche a forma
-}
-pontoBaixo()
-function organizaArvore(receita){
-  
-}
-function encontraRaio(pontos,maiorPonto){
-  var circunferenciaMinima = len(pontos)*maiorPonto
-  var raio = Math.roof(circunferenciaMinima/(2*Math.PI))
+function encontraRaio(pontos, maiorPonto) {
+  var circunferenciaMinima = len(pontos) * maiorPonto
+  var raio = Math.ceil(circunferenciaMinima / (2 * Math.PI))
   return raio
 }
 function pontosCircunferencia(cx, cy, r, n) {
-    let pontos = [];
-    for (let k = 0; k < n; k++) {
-        let theta = (2 * Math.PI / n) * k;
-        let x = cx + r * Math.cos(theta);
-        let y = cy + r * Math.sin(theta);
-        pontos.push({x, y});
-    }
-    return pontos;
+  let pontos = [];
+  for (let k = 0; k < n; k++) {
+    let theta = (2 * Math.PI / n) * k;
+    let x = cx + r * Math.cos(theta);
+    let y = cy + r * Math.sin(theta);
+    pontos.push({ x, y, theta });
+  }
+  return pontos;
 }
-function adicionaPontoCircunferencia(Cx,Cy,raio,pontos){
-  //Divide a circunferencia em n pontos de mesma distancia
-  var posicaoPontos = pontosCircunferencia(Cx,Cy,raio,len(pontos))
-  posicaoPontos.forEach(cirPonto => {
-
+function pontosArco() { }
+function adicionaPontoCircunferencia(cx, cy, raio, nPontos) {
+  const pontos = pontosCircunferencia(cx, cy, raio, nPontos);
+  pontos.forEach(p => {
+    pontoBaixo(p.x, p.y, p.theta);
   });
+}
+function distribuirPontosEmArco(pontoBase, quantidade, raio = 40, abertura = Math.PI / 3) {
+  const pontos = [];
 
+  if (quantidade === 1) {
+    // apenas um: segue alinhado com o ângulo do ponto base
+    const x = pontoBase.x + Math.cos(pontoBase.angulo) * raio;
+    const y = pontoBase.y + Math.sin(pontoBase.angulo) * raio;
+    pontos.push({ x, y, angulo: pontoBase.angulo });
+    return pontos;
+  }
+
+  // vários: distribui em arco
+  const inicio = pontoBase.angulo - abertura / 2;
+  const passo = abertura / (quantidade - 1);
+
+  for (let i = 0; i < quantidade; i++) {
+    const ang = inicio + passo * i;
+    const x = pontoBase.x + Math.cos(ang) * raio;
+    const y = pontoBase.y + Math.sin(ang) * raio;
+    pontos.push({ x, y, angulo: ang });
+  }
+
+  return pontos;
+}
+function organizaArvore(receita) {
+  linhas = receita.split(";");
+  var receitaArvore = new Arvore();
+  linhas.forEach(linha => {
+    pontos_por_separacao = linha.split(",");
+    pontos_por_separacao.forEach(ponto_sp => {
+      if ("corr" in ponto_sp){
+        
+      }else if("aum" in ponto_sp){
+
+      }else{
+        if("pbx" in ponto_sp){
+
+        }else if("pb" in ponto_sp){
+
+        }else if("mpa" in ponto_sp){
+
+        }else if("pa" in ponto_sp){
+
+        }else if("pad" in ponto_sp){
+
+        }else{
+          
+        }
+      }
+    });
+  });
 }
 formulario.addEventListener('submit', (event) => {
   event.preventDefault(); // impede o envio tradicional
   // Pega valor da receita
   const receita = formulario.elements['receita'].value;
-  // Organiza os dados numa lista
-  var instrucoes_receita=organizaDados(receita)
-  // Inicia um foreach para percorrer cada linha
-  
+  var arvore = organizaArvore(receita)
+
 });
