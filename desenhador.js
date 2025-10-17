@@ -1,11 +1,7 @@
 const formulario = document.getElementById('form-receita');
+
 let canvas = document.getElementById("crocheCanvas");
 let ctx = canvas.getContext("2d"); // contexto 2D
-function circuloMagico(raio) {
-  ctx.beginPath();
-  ctx.arc(200, 300, raio, 0, 2 * Math.PI); // x, y, raio, ângulo inicial, final
-  ctx.stroke(); // borda
-}
 function encontraRaio(pontos, maiorPonto) {
   var circunferenciaMinima = len(pontos) * maiorPonto
   var raio = Math.ceil(circunferenciaMinima / (2 * Math.PI))
@@ -52,31 +48,36 @@ function distribuirPontosEmArco(pontoBase, quantidade, raio = 40, abertura = Mat
 
   return pontos;
 }
+function descobrePonto(ponto){
+  switch (tipo_ponto){
+    case "corr":
+
+    case "pbx":
+
+    case "pb":
+            
+    case "mpa":
+
+    case "pa":
+            
+  }  
+}
 function organizaArvore(receita) {
   linhas = receita.split(";");
   var receitaArvore = new Arvore();
   linhas.forEach(linha => {
-    pontos_por_separacao = linha.split(",");
+    var pontos_por_separacao = linha.split(",");
     pontos_por_separacao.forEach(ponto_sp => {
-      if ("corr" in ponto_sp){
-        
-      }else if("aum" in ponto_sp){
+      var conjunto_ponto = ponto_sp.slit(" ");
+      var numero = int(conjunto_ponto[0]);
+      var tipo_ponto = conjunto_ponto[1];
+      if("(" in tipo_ponto){
 
       }else{
-        if("pbx" in ponto_sp){
-
-        }else if("pb" in ponto_sp){
-
-        }else if("mpa" in ponto_sp){
-
-        }else if("pa" in ponto_sp){
-
-        }else if("pad" in ponto_sp){
-
-        }else{
-          
-        }
+        
       }
+      
+
     });
   });
 }
