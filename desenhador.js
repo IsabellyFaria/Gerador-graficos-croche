@@ -2,8 +2,8 @@ const formulario = document.getElementById('form-receita');
 
 let canvas = document.getElementById("crocheCanvas");
 let ctx = canvas.getContext("2d"); // contexto 2D
-function encontraRaio(pontos, maiorPonto) {
-  var circunferenciaMinima = len(pontos) * maiorPonto
+function encontraRaio(numPontos, maiorPonto) {
+  var circunferenciaMinima = numPontos * maiorPonto
   var raio = Math.ceil(circunferenciaMinima / (2 * Math.PI))
   return raio
 }
@@ -48,43 +48,87 @@ function distribuirPontosEmArco(pontoBase, quantidade, raio = 40, abertura = Mat
 
   return pontos;
 }
-function descobrePonto(ponto){
+function descobrePonto(tipo_ponto){
+  var ponto;
   switch (tipo_ponto){
     case "corr":
 
     case "pbx":
 
     case "pb":
-            
+      ponto = new PontoBaixo()      
     case "mpa":
 
     case "pa":
             
   }  
+  return ponto;
+}
+function encontraPai(carreiraAnterior, indice){
+  if (carreiraAnterior.length > 0) {
+    return carreiraAnterior[indice]
+  }
 }
 function organizaArvore(receita) {
   linhas = receita.split(";");
   var receitaArvore = new Arvore();
   linhas.forEach(linha => {
     var pontos_por_separacao = linha.split(",");
+    var carreiraAtual = [];
+    var carreiraAnterior = [];
+    var shell_pontos =[];
+    var indice = 0;
+    var shell = false;
     pontos_por_separacao.forEach(ponto_sp => {
       var conjunto_ponto = ponto_sp.slit(" ");
       var numero = int(conjunto_ponto[0]);
       var tipo_ponto = conjunto_ponto[1];
-      if("(" in tipo_ponto){
-
+      //descobre pai
+      var pai;
+      if (len(carreiraAnterior)>0){
+        pai = encontraPai(carreiraAnterior, indice);
       }else{
+        pai = null
+      }    
+      if("(" in tipo_ponto){
+        shell = true;
+        indice =+1;
+      }else if(")" in tipo_ponto){
+        shell = false;
         
+      }else{
+        if(shell){
+          var shell_ponto = descobrePonto(ponto_sp);
+          carreiraAtual.push(ponto)
+          shell_pontos.push();
+          var contador = 0;
+          while(contador < numero){
+            receitaArvore.adicionaNo(ponto,encontraPai(carreiraAnterior, indice))
+            contador=+1;
+          }
+        }else{
+          var ponto = descobrePonto(ponto_sp);
+          carreiraAtual.push(ponto)
+          var contador = 0;
+          while(contador < numero){
+            receitaArvore.adicionaNo(ponto,encontraPai(carreiraAnterior, indice))
+            indice=+1;
+            contador=+1;
+          }
+          
+        }
       }
-      
-
     });
   });
+  return receitaArvore[0]
+}
+function desenhaArvore(arvore){
+
 }
 formulario.addEventListener('submit', (event) => {
   event.preventDefault(); // impede o envio tradicional
   // Pega valor da receita
   const receita = formulario.elements['receita'].value;
   var arvore = organizaArvore(receita)
-
+  
 });
