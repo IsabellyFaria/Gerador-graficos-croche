@@ -2,6 +2,8 @@ const formulario = document.getElementById('form-receita');
 
 let canvas = document.getElementById("crocheCanvas");
 let ctx = canvas.getContext("2d"); // contexto 2D
+const centroX = canvas.width / 2;
+const centroY = canvas.height / 2;
 function encontraRaio(numPontos, maiorPonto) {
   var circunferenciaMinima = numPontos * maiorPonto
   var raio = Math.ceil(circunferenciaMinima / (2 * Math.PI))
@@ -123,8 +125,41 @@ function organizaArvore(receita) {
   return receitaArvore[0]
 }
 function desenhaArvore(arvore){
+  
+    var ponto = no.valor;
+    if(ponto instanceof CirculoMagico){
+      var contador = 1;
+      var filho = no.getPrimogenito();
 
+      while (filho){
+        contador =+ 1;
+        filho = no.getProxIrmao();
+      }
+      var raio = encontraRaio(contador);
+      ponto.setRaio(raio);
+      ponto.setXY(centroX,centroY);
+    }else{
+      var contador = 1;
+      var irmao = no.proxIrmao();
+      while(irmao){
+        irmao = irmao.proxIrmao();
+      }
+      irmao = no.proxIrmao();
+      var posicoesPonto = pontosCircunferencia(contador);
+      ponto.setXY(posicoesPonto[0][0],posicoesPonto[0][1]);
+      ponto.setAngulo(posicoesPonto[0][2]);
+      contador = 1;
+      while(irmao){
+        irmao.setXY(posicoesPonto[contador][0],posicoesPonto[contador][1]);
+        irmao.setAngulo(posicoesPonto[contador][3]);
+        irmao = irmao.proxIrmao();
+        contador =+ 1;
+      }
+      ponto.desenhar()
+    }
+  });
 }
+
 formulario.addEventListener('submit', (event) => {
   event.preventDefault(); // impede o envio tradicional
   // Pega valor da receita

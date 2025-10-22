@@ -6,7 +6,7 @@ class Ponto {
         this.cor = cor
         this.raio = raio
     }
-    setCY(Cx,Cy){
+    setXY(Cx,Cy){
         this.Cx = Cx;
         this.Cy = Cy;
     }
