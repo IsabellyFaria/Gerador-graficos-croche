@@ -1,46 +1,49 @@
-class No{
-    constructor(valor){
-        this.valor=valor;
+class No {
+    constructor(valor) {
+        this.valor = valor;
         this.primogenito = null;
         this.proxIrmao = null;
-        this.pai=null;
+        this.pai = null;
     }
 }
-class Arvore{
-    constructor(){
-        this.raiz=null;
+class Arvore {
+    constructor() {
+        this.raiz = null;
     }
-    criaNo(valor){
+    criaNo(valor) {
         var novoNo = new No(valor);
-        if (this.raiz==null){
+        if (this.raiz == null) {
             this.raiz = novoNo;
         }
         return novoNo;
     }
-    adicionaNo(valor,pai=null){
-        var novoNo = criaNo(valor);
-        var primogenito = pai.primogenito;
-        if(pai){
-            if(primogenito == null){
-                pai.primogenito = novoNo;
-            }else if(primogenito.proxIrmao == null){
-                primogenito.proxIrmao = novoNo;
-            }else{
-                var ultimoIrmao = primogenito.proxIrmao;
-                while(ultimoIrmao.proxIrmao != null){
-                    ultimoIrmao = ultimoIrmao.proxIrmao;
-                }
-                ultimoIrmao.proxIrmao= novoNo;
+    adicionaNo(valor, pai = null) {
+    if (!valor) {
+        console.warn("Tentativa de adicionar nó sem valor!");
+        return null;
+    }
+    const novoNo = this.criaNo(valor);
+    if (pai) {
+        if (!pai.primogenito) {
+            pai.primogenito = novoNo;
+        } else {
+            let irmao = pai.primogenito;
+            while (irmao.proxIrmao) {
+                irmao = irmao.proxIrmao;
             }
+            irmao.proxIrmao = novoNo;
         }
     }
-    getRaiz(){
+    return novoNo;
+}
+    getRaiz() {
         return this.raiz;
     }
-    getPrimogenito(no){
+    getPrimogenito(no) {
         return no.primogenito
     }
-    getProxIrmao(no){
+    getProxIrmao(no) {
         return no.proxIrmao
     }
+    
 }
